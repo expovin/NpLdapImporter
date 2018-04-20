@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+
+//@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+//@import '~@angular/material/prebuilt-themes/purple-green.scss';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+// some basic resets 
+$lt-gray: #ddd;
+$background-dark: #315515;
+$background-light: #60A729;
+$background-pale: #D1C4E9;
+$primary-color-dark:   #315515;
+$primary-color:        #60A729;
+$primary-color-light:  #c1e8a3;
+$primary-color-text:   #FFFFFF;
+$accent-color:         #FFC107;
+$primary-text-color:   #212121;
+$secondary-text-color: #757575;
+$divider-color:        #BDBDBD;
+
+body { 
+  padding: 0; 
+  margin: 0; 
+  font-family: Roboto, sans-serif; 
+ // background: $divider-color;
+
+    background:url("./assets/images/set-1.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: right bottom;
+    background-size: 280px 260px;
+
+}
+
+.container {
+    margin: 20px;
+    display:flex;
+    padding-left: 20%;
+}
+
+
+#versionLable {
+   text-align:right;
+   color:#999;
+   font-style: italic;
+
+}
+
+@mixin zero-margin($pad-up-down, $pad-left-right) {
+    margin: 0px auto;
+    padding: $pad-up-down $pad-left-right;
+}
+
+.primary .background-primary {
+    background-color: $background-dark!important;
+  }
+.background-accent {
+    background-color: $accent-color!important;
+  }
+.text-floral-white {
+    color: floralwhite!important;
+}
+
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+
+.md-dialog-container {
+  position: absolute;
+}
+
+md-dialog {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+
+
+
+.filler {
+    width: 25%;
+}
+md-card {
+    padding-top: 25px;    
+    width: 80%;
+}
+.simple-form {
+    padding-left: 50px;
+    //width: 500px;
+}
+
+.whiteText {
+    color : #FFF;
+}
+
+.center {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.rightAling {
+    margin-left: auto;
+    margin-right: 5px;
+}

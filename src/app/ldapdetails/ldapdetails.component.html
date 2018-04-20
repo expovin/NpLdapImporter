@@ -1,0 +1,86 @@
+<div class="container centralBody" fxLayout="column" fxLayoutGap="10px">
+    <md-card class="simple-card">
+      <md-card-header>
+      <md-card-title>
+        <h2>LDAP Connection Details</h2>
+       
+      </md-card-title>
+      <md-card-subtitle>
+        <p>Fill up with the LDAP details. Asterisk for mandatory fields </p>
+      </md-card-subtitle>
+      </md-card-header>
+
+        <form novalidate class="simple-form"> 
+            <!-- Contenuto Form -->   
+          <md-dialog-content>
+            <div fxLayout="column" fxLayoutGap="10px">  
+              <table width="95%">
+                <tr width="100%">
+                  <td width="80%">
+                    <md-input-container>
+                      <input mdInput placeholder="Server" type="text" [(ngModel)]="ldap.ldapServer" name="server" required>
+                    </md-input-container>
+                  </td>
+                  <td width="20%">
+                    <md-input-container>
+                      <input mdInput placeholder="port" type="text" [(ngModel)]="ldap.ldapPort" name="port" required>
+                    </md-input-container>
+                  </td>
+                </tr>
+              </table>
+
+              <md-input-container>
+                <input mdInput placeholder="baseDN" type="text" [(ngModel)]="ldap.baseDN" name="baseDN">
+              </md-input-container>
+
+          <span layout="row">
+              <h3 flex>URL : <small *ngIf="ldap.ldapServer"> {{ldap.ldapServer}}:{{ldap.ldapPort}}/{{ldap.baseDN}} </small> </h3>
+          </span>
+
+          <span layout="row">
+            <md-input-container class="md-block">
+                <textarea  mdInput placeholder="filter" type="text" [(ngModel)]="ldap.filter" name="filter" rows="3" cols="80" md-select-on-focus></textarea>
+            </md-input-container>
+          </span>
+
+              <table width="95%">
+                <tr width="100%">
+                  <td width="50%">
+                    <md-input-container>
+                      <input mdInput placeholder="Username" type="text" [(ngModel)]="ldap.username" name="username" required>
+                    </md-input-container>
+                  </td>
+                  <td width="50%">
+                    <md-input-container>
+                      <input mdInput placeholder="Password" type="password" [(ngModel)]="ldap.password" name="password" required>
+                    </md-input-container>
+                  </td>
+              </table>
+
+             </div>
+          </md-dialog-content>
+            <!-- Azioni Form -->   
+          <md-dialog-actions>
+                 <span class="flex-spacer"></span>
+                 <button md-button (click)="onSubmit()">Cancel</button>
+                 <button type="submit" md-button (click)="onSubmit()">Get Users</button>
+          </md-dialog-actions>
+        </form>
+    </md-card>
+
+
+    <div class="center" *ngIf="Users.length == 0 && submitted">
+      <md-spinner></md-spinner>
+      <h4 class="whiteText">Fatching data . . . Please Wait</h4>
+     </div>
+
+    <md-card *ngIf="Users.length > 0">
+       <md-card-title>
+         <h5>Utenti letti : {{Users.length}}</h5>
+         <div class="rightAling">
+            <a md-button (click)="onNext()">Next <span class="fa fa-chevron-right"></span></a>
+         </div>
+       </md-card-title>
+
+    </md-card>
+</div>

@@ -1,0 +1,50 @@
+<div class="container" fxLayout="column" fxLayoutGap="10px">
+    <md-card class="simple-card">
+      <md-card-header>
+      <md-card-title>
+        <h2>Metadata maping</h2>
+      </md-card-title>
+      <md-card-subtitle>
+        <p>Map the metadata coming from LDAP to the NPrinting Metadata </p>
+      </md-card-subtitle>
+      </md-card-header>
+    <p>
+      {{NPrintingUsers}}
+    </p>
+    <form novalidate class="simple-form">
+       <md-dialog-content> 
+      <table>
+        <thead>
+          <tr>
+            <th>NPrinting Metadata</th>
+            <th>LDAP Metadata</th>
+            <th>
+              <a md-button (click)="prevUser()"><span class="fa fa-chevron-left"></span></a>
+                  User infos {{indexUser}}
+              <a md-button (click)="nextUser()"><span class="fa fa-chevron-right"></span></a>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let property of userProperties | keys;let i = index;trackBy:trackByIndex;">
+            <td><h3>{{property.key}}</h3></td>
+            <td>{{userProperties[property.key]}}</td>
+            <td>
+                <a md-button (click)="prevField(property.key)"><span class="fa fa-chevron-left"></span></a>
+                <a md-button (click)="nextField(property.key)"><span class="fa fa-chevron-right"></span></a>
+            </td>
+            <td><h4>{{users[indexUser][property.value] | truncate : 55}}</h4></td>
+          </tr>
+        </tbody>
+      </table>
+
+         <div class="rightAling">
+            <a md-button (click)="onPrev()"><span class="fa fa-chevron-left"></span> Back</a>
+            <a md-button (click)="onNext()">Next <span class="fa fa-chevron-right"></span></a>
+         </div>
+       </md-dialog-content>
+    </form>
+    </md-card>
+</div>
+
+

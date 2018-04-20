@@ -1,0 +1,80 @@
+<div class="container centralBody" fxLayout="column" fxLayoutGap="10px">
+    <md-card class="simple-card">
+      <md-card-header>
+      <md-card-title>
+        <h2>NPrinting Connection Details</h2>
+       
+      </md-card-title>
+      <md-card-subtitle>
+        <p>Fill up with the NPrinting server details.</p>
+      </md-card-subtitle>
+      </md-card-header>
+
+        <div *ngIf="NPServer.RetCode == 200" class="alert alert-success">
+          <strong>Connected!</strong> You can now import the users into NPrinting Server.
+        </div>
+
+        <div *ngIf="NPServer.RetCode == 401" class="alert alert-danger">
+          <strong>Authentication Error</strong> User or Password incorrect. Please try again.
+        </div>
+
+        <form novalidate class="simple-form"> 
+            <!-- Contenuto Form -->   
+          <md-dialog-content>
+            <div fxLayout="column" fxLayoutGap="10px">  
+              <table width="95%">
+                <tr>
+                  <td width="80%">
+                    <md-input-container>
+                      <input mdInput placeholder="Server" type="text" [(ngModel)]="NPServer.NPServer" name="server" required>
+                    </md-input-container>
+                  </td>
+                  <td width="20%">
+                    <md-input-container>
+                      <input mdInput placeholder="Port" type="text" [(ngModel)]="NPServer.NPPort" name="port" required>
+                    </md-input-container>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <md-input-container>
+                      <input mdInput placeholder="Username" type="text" [(ngModel)]="NPServer.user" name="username" required>
+                    </md-input-container>
+                  </td>
+                  <td width="50%">
+                    <md-input-container>
+                      <input mdInput placeholder="Password" type="password" [(ngModel)]="NPServer.password" name="password" required>
+                    </md-input-container>
+                  </td>
+                </tr>
+              </table>
+
+             </div>
+          </md-dialog-content>
+            <!-- Azioni Form -->   
+          <md-dialog-actions>
+                 <span class="flex-spacer"></span>
+                 <button md-button (click)="back()">Back</button>
+                 <button *ngIf="NPServer.RetCode != 200" md-button (click)="auth()">Connect</button>
+                 <button *ngIf="NPServer.RetCode == 200" md-button (click)="import()">Import</button>
+          </md-dialog-actions>
+        </form>
+    </md-card>
+
+      <md-card *ngIf="importing">
+        <h1>Import Progress</h1>
+        <md-progress-bar
+            class="example-margin"
+            [color]="color"
+            [mode]="mode"
+            [value]="fUsersLen"
+            [bufferValue]="fondoscala">
+        </md-progress-bar>
+          <h4>Imported status: {{fUsersLen}}%</h4>
+          <div *ngIf="fUsersLen < 100">
+            <h4>Some users were not imported. For further details press the button...</h4>
+           <button *ngIf="fUsersLen < 100" md-button md-raised-button (click)="openDialog()">Details</button>
+          </div>
+      </md-card>
+
+</div>
